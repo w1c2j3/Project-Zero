@@ -1,0 +1,199 @@
+@import '../../styles/mixins'
+
+// Character List Component
+.character-list
+  padding: $spacing-lg
+  background-color: rgba($surface-color, 0.7)
+  border-radius: $border-radius-lg
+  height: 100%
+
+  &__title
+    margin-bottom: $spacing-lg
+    color: $text-primary
+    font-size: $font-size-xl
+
+  &__grid
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: $spacing-md
+    overflow-y: auto
+    max-height: calc(100% - 60px)
+    @include custom-scrollbar
+
+    @include respond-below(medium)
+      grid-template-columns: repeat(1, 1fr)
+
+  &__loading
+    @include flex-center
+    height: 200px
+    color: $text-secondary
+    font-size: $font-size-lg
+
+// Character Card Component
+.character-card
+  background-color: $surface-color
+  border-radius: $border-radius-md
+  overflow: hidden
+  cursor: pointer
+  @include transition(transform, box-shadow)
+  @include card-shadow(1)
+
+  &:hover
+    transform: translateY(-4px)
+    @include card-shadow(2)
+
+  &--active
+    border: 2px solid $primary-color
+    transform: translateY(-4px)
+    @include card-shadow(2)
+
+  &__image
+    width: 100%
+    height: 180px
+    overflow: hidden
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+      @include transition(transform)
+
+  &:hover &__image img
+    transform: scale(1.05)
+
+  &__content
+    padding: $spacing-md
+
+  &__name
+    margin-bottom: $spacing-sm
+    color: $text-primary
+    font-size: $font-size-lg
+
+  &__description
+    color: $text-secondary
+    font-size: $font-size-sm
+    @include text-truncate
+
+// Character Display Component
+.character-display
+  position: relative
+  height: 100%
+  border-radius: $border-radius-lg
+  overflow: hidden
+  opacity: 0
+  @include transition(opacity)
+
+  &--visible
+    opacity: 1
+
+  &--empty
+    @include flex-center
+    background-color: rgba($surface-color, 0.5)
+
+  &__message
+    color: $text-secondary
+    font-size: $font-size-lg
+
+  &__video-container
+    position: relative
+    width: 100%
+    height: 100%
+    overflow: hidden
+
+  &__video
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+  &__details
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    padding: $spacing-lg
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0))
+
+  &__name
+    color: $text-primary
+    font-size: $font-size-xxl
+    margin-bottom: $spacing-sm
+
+  &__description
+    color: $text-secondary
+    font-size: $font-size-base
+    max-width: 80%
+
+// User Stats Component
+.user-stats
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  gap: $spacing-lg
+  margin-top: $spacing-lg
+
+  @include respond-below(medium)
+    grid-template-columns: 1fr
+
+  &__card
+    background-color: $surface-color
+    border-radius: $border-radius-md
+    padding: $spacing-lg
+    @include card-shadow(1)
+
+  &__title
+    color: $text-primary
+    font-size: $font-size-lg
+    margin-bottom: $spacing-md
+
+  &__count
+    color: $primary-color
+    font-size: $font-size-xxxl
+    font-weight: bold
+    text-align: center
+
+  &__mode
+    color: $primary-color
+    font-size: $font-size-xl
+    font-weight: bold
+    margin-bottom: $spacing-md
+
+  &__toggle
+    background-color: $secondary-color
+    color: white
+    border: none
+    border-radius: $border-radius-sm
+    padding: $spacing-sm $spacing-md
+    cursor: pointer
+    font-size: $font-size-sm
+    @include transition(background-color)
+
+    &:hover
+      background-color: lighten($secondary-color, 10%)
+
+  &__warning
+    margin-top: $spacing-md
+    color: $error-color
+    font-size: $font-size-sm
+
+// Platform Page Layout
+.platform-page
+  width: 100%
+  padding: $spacing-xl $spacing-lg
+  min-height: calc(100vh - 64px)
+
+  &__title
+    margin-bottom: $spacing-xl
+    color: $text-primary
+    text-align: center
+    font-size: $font-size-xxl
+
+  &__container
+    display: grid
+    grid-template-columns: 40% 60%
+    gap: $spacing-xl
+    height: calc(100vh - 200px)
+
+    @include respond-below(medium)
+      grid-template-columns: 1fr
+      grid-template-rows: auto 1fr
+      height: auto
+      gap: $spacing-lg

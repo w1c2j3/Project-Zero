@@ -1,0 +1,480 @@
+// src/app/page.module.sass
+@import '../styles/mixins'
+
+// Hero Section
+.home
+  &__hero
+    min-height: 100vh
+    padding: $spacing-xxl $spacing-xl
+    @include bg-cover
+    background-image: url('/assets/hero-bg.jpg')
+    position: relative
+
+    &::before
+      content: ''
+      @include absolute(0, 0, 0, 0)
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5))
+      z-index: 0
+
+  &__hero-content
+    max-width: 600px
+    position: relative
+    z-index: 1
+    margin-top: $spacing-xxl
+
+  &__title
+    font-size: 4rem
+    font-weight: 900
+    margin-bottom: $spacing-sm
+    color: $text-primary
+    line-height: 1.1
+
+  &__subtitle
+    font-size: $font-size-xl
+    color: $accent-color
+    margin-bottom: $spacing-lg
+
+  &__description
+    font-size: $font-size-base
+    color: $text-secondary
+    margin-bottom: $spacing-xl
+    line-height: 1.6
+    max-width: 500px
+
+  &__buttons
+    @include flex(row, flex-start, center)
+    gap: $spacing-md
+    margin-bottom: $spacing-xxl
+
+// Common Section Styles
+.home__section
+  padding: $spacing-xxl 0
+
+  &-container
+    max-width: 1200px
+    margin: 0 auto
+    padding: 0 $spacing-xl
+
+  &-title
+    text-align: center
+    margin-bottom: $spacing-xxl
+    font-size: $font-size-xxl
+    color: $text-primary
+    position: relative
+
+    &::after
+      content: ''
+      position: absolute
+      bottom: -$spacing-md
+      left: 50%
+      transform: translateX(-50%)
+      width: 60px
+      height: 3px
+      background-color: $primary-color
+
+// Skills Section
+.home__skills
+  background-color: $background-color
+
+  &-grid
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: $spacing-xl
+
+    @include respond-below(medium)
+      grid-template-columns: repeat(2, 1fr)
+
+    @include respond-below(small)
+      grid-template-columns: 1fr
+
+  &-category
+    background-color: $surface-color
+    border-radius: $border-radius-md
+    padding: $spacing-lg
+    @include card-shadow(1)
+
+  &-heading
+    color: $text-primary
+    font-size: $font-size-lg
+    margin-bottom: $spacing-lg
+    padding-bottom: $spacing-sm
+    border-bottom: 1px solid $border-color
+
+  &-list
+    list-style: none
+    padding: 0
+    margin: 0
+
+  &-item
+    margin-bottom: $spacing-md
+
+  &-name
+    display: block
+    margin-bottom: $spacing-xs
+    color: $text-secondary
+    font-size: $font-size-sm
+
+  &-bar
+    height: 6px
+    background-color: rgba(255, 255, 255, 0.1)
+    border-radius: 3px
+    overflow: hidden
+
+  &-progress
+    height: 100%
+    background-color: $primary-color
+    border-radius: 3px
+    @include transition(width, 1s, ease-in-out)
+
+// Experience Section
+.home__experience
+  background-color: darken($background-color, 3%)
+
+  &-title
+    color: $primary-color
+
+.home__timeline
+  position: relative
+  max-width: 900px
+  margin: 0 auto
+
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 120px
+    width: 2px
+    background-color: $border-color
+
+    @include respond-below(small)
+      left: 20px
+
+  &-item
+    position: relative
+    padding-bottom: $spacing-xxl
+    @include flex(row, flex-start, flex-start)
+
+    &:last-child
+      padding-bottom: 0
+
+  &-date
+    width: 100px
+    padding-right: $spacing-md
+    text-align: right
+    font-weight: bold
+    color: $primary-color
+
+    @include respond-below(small)
+      width: auto
+      padding-right: $spacing-xs
+
+  &-content
+    position: relative
+    margin-left: $spacing-xl * 2
+    background-color: $surface-color
+    border-radius: $border-radius-md
+    padding: $spacing-lg
+    @include card-shadow(1)
+
+    &::before
+      content: ''
+      position: absolute
+      top: $spacing-lg
+      left: -10px
+      width: 20px
+      height: 20px
+      background-color: $surface-color
+      transform: rotate(45deg)
+
+    @include respond-below(small)
+      margin-left: $spacing-xl
+
+  &-title
+    color: $text-primary
+    font-size: $font-size-lg
+    margin-bottom: $spacing-xs
+
+  &-company
+    color: $accent-color
+    font-size: $font-size-base
+    margin-bottom: $spacing-md
+
+  &-description
+    color: $text-secondary
+    margin-bottom: $spacing-md
+    line-height: 1.6
+
+  &-achievements
+    padding-left: $spacing-lg
+    margin-bottom: 0
+
+    li
+      color: $text-secondary
+      margin-bottom: $spacing-xs
+
+      &:last-child
+        margin-bottom: 0
+
+// Projects Section
+.home__projects
+  background-color: $background-color
+
+  &-grid
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: $spacing-xl
+
+    @include respond-below(medium)
+      grid-template-columns: repeat(2, 1fr)
+
+    @include respond-below(small)
+      grid-template-columns: 1fr
+
+  &-more
+    text-align: center
+    margin-top: $spacing-xxl
+
+.home__project
+  &-card
+    background-color: $surface-color
+    border-radius: $border-radius-md
+    overflow: hidden
+    @include transition(transform, box-shadow)
+    @include card-shadow(1)
+    display: block
+    height: 100%
+
+    &:hover
+      transform: translateY(-8px)
+      @include card-shadow(2)
+
+      .home__project-image
+        transform: scale(1.05)
+
+  &-image-container
+    width: 100%
+    height: 220px
+    overflow: hidden
+
+  &-image
+    width: 100%
+    height: 100%
+    object-fit: cover
+    @include transition(transform)
+
+  &-content
+    padding: $spacing-lg
+
+  &-title
+    color: $text-primary
+    font-size: $font-size-lg
+    margin-bottom: $spacing-sm
+
+  &-description
+    color: $text-secondary
+    font-size: $font-size-sm
+    margin-bottom: $spacing-md
+    @include text-clamp(3)
+
+  &-tags
+    @include flex(row, flex-start, center)
+    flex-wrap: wrap
+    gap: $spacing-xs
+
+  &-tag
+    display: inline-block
+    padding: $spacing-xs $spacing-sm
+    border-radius: $border-radius-sm
+    background-color: rgba($primary-color, 0.1)
+    color: $primary-color
+    font-size: $font-size-xs
+    font-weight: 500
+
+// Education Section
+.home__education
+  background-color: darken($background-color, 3%)
+
+  &-item
+    @include flex(row, flex-start, flex-start)
+    max-width: 900px
+    margin: 0 auto $spacing-xl
+    background-color: $surface-color
+    border-radius: $border-radius-md
+    overflow: hidden
+    @include card-shadow(1)
+
+    &:last-child
+      margin-bottom: 0
+
+    @include respond-below(small)
+      @include flex(column, flex-start, stretch)
+
+  &-year
+    width: 200px
+    padding: $spacing-lg
+    background-color: $primary-color
+    color: white
+    font-weight: bold
+    font-size: $font-size-lg
+    text-align: center
+    @include flex-center
+
+    @include respond-below(small)
+      width: 100%
+      padding: $spacing-md
+
+  &-content
+    flex: 1
+    padding: $spacing-lg
+
+  &-degree
+    color: $text-primary
+    font-size: $font-size-lg
+    margin-bottom: $spacing-xs
+
+  &-school
+    color: $accent-color
+    font-size: $font-size-base
+    margin-bottom: $spacing-md
+
+  &-description
+    color: $text-secondary
+    line-height: 1.6
+    margin-bottom: 0
+
+// Contact Section
+.home__contact
+  background-color: $background-color
+
+  &-grid
+    display: grid
+    grid-template-columns: 1fr 2fr
+    gap: $spacing-xl
+
+    @include respond-below(medium)
+      grid-template-columns: 1fr
+
+  &-info
+    background-color: $surface-color
+    border-radius: $border-radius-md
+    padding: $spacing-xl
+    @include card-shadow(1)
+
+  &-item
+    margin-bottom: $spacing-xl
+    text-align: center
+
+    &:last-child
+      margin-bottom: 0
+
+  &-icon
+    @include circle(60px)
+    margin: 0 auto $spacing-md
+    background-color: rgba($primary-color, 0.1)
+    color: $primary-color
+    @include flex-center
+    font-size: $font-size-xl
+
+  &-title
+    color: $text-primary
+    font-size: $font-size-base
+    margin-bottom: $spacing-xs
+
+  &-value
+    color: $text-secondary
+    font-size: $font-size-sm
+
+  &-social
+    @include flex(row, center, center)
+    gap: $spacing-md
+    margin-top: $spacing-xl
+    padding-top: $spacing-lg
+    border-top: 1px solid $border-color
+
+  &-social-link
+    color: $text-secondary
+    font-size: $font-size-sm
+    @include transition(color)
+
+    &:hover
+      color: $primary-color
+
+  &-form-container
+    background-color: $surface-color
+    border-radius: $border-radius-md
+    padding: $spacing-xl
+    @include card-shadow(1)
+
+  &-form
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: $spacing-md
+
+    @include respond-below(small)
+      grid-template-columns: 1fr
+
+.home__form
+  &-group
+    &:nth-child(3)
+      grid-column: span 2
+
+      @include respond-below(small)
+        grid-column: span 1
+
+  &-label
+    display: block
+    margin-bottom: $spacing-xs
+    color: $text-secondary
+    font-size: $font-size-sm
+
+  &-input,
+  &-textarea
+    width: 100%
+    padding: $spacing-md
+    background-color: rgba(255, 255, 255, 0.05)
+    border: 1px solid $border-color
+    border-radius: $border-radius-sm
+    color: $text-primary
+    font-size: $font-size-base
+    @include transition(border-color)
+
+    &:focus
+      outline: none
+      border-color: $primary-color
+
+  &-textarea
+    resize: vertical
+
+  &-submit
+    grid-column: span 2
+    margin-top: $spacing-md
+    padding: $spacing-md
+
+    @include respond-below(small)
+      grid-column: span 1
+
+// Button Component Styles
+.button
+  display: inline-block
+  padding: $spacing-md $spacing-xl
+  border-radius: $border-radius-sm
+  font-weight: 500
+  text-align: center
+  cursor: pointer
+  @include transition(background-color)
+
+  &--primary
+    background-color: $primary-color
+    color: white
+
+    &:hover
+      background-color: lighten($primary-color, 10%)
+
+  &--outline
+    background-color: transparent
+    border: 1px solid $primary-color
+    color: $primary-color
+
+    &:hover
+      background-color: rgba($primary-color, 0.1)
